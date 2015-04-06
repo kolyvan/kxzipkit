@@ -1,0 +1,768 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F918D5871AD25F46006E8FF3 /* KxZipKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F918D5861AD25F46006E8FF3 /* KxZipKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F918D58D1AD25F46006E8FF3 /* KxZipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F918D5811AD25F46006E8FF3 /* KxZipKit.framework */; };
+		F918D5941AD25F46006E8FF3 /* KxZipKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F918D5931AD25F46006E8FF3 /* KxZipKitTests.m */; };
+		F918D5A41AD25F97006E8FF3 /* KxZipLib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F918D5A31AD25F97006E8FF3 /* KxZipLib.h */; };
+		F918D5A61AD25F97006E8FF3 /* KxZipLib.m in Sources */ = {isa = PBXBuildFile; fileRef = F918D5A51AD25F97006E8FF3 /* KxZipLib.m */; };
+		F918D5AC1AD25F97006E8FF3 /* libKxZipLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F918D5A11AD25F97006E8FF3 /* libKxZipLib.a */; };
+		F918D5C11AD25FB4006E8FF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F918D5C01AD25FB4006E8FF3 /* main.m */; };
+		F918D5C41AD25FB4006E8FF3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F918D5C31AD25FB4006E8FF3 /* AppDelegate.m */; };
+		F918D5C71AD25FB4006E8FF3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F918D5C61AD25FB4006E8FF3 /* ViewController.m */; };
+		F918D5CC1AD25FB4006E8FF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F918D5CB1AD25FB4006E8FF3 /* Images.xcassets */; };
+		F918D5CF1AD25FB4006E8FF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F918D5CD1AD25FB4006E8FF3 /* LaunchScreen.xib */; };
+		F918D5E41AD25FDE006E8FF3 /* libKxZipLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F918D5A11AD25F97006E8FF3 /* libKxZipLib.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F918D58E1AD25F46006E8FF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F918D5781AD25F46006E8FF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F918D5801AD25F46006E8FF3;
+			remoteInfo = KxZipKit;
+		};
+		F918D5AD1AD25F97006E8FF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F918D5781AD25F46006E8FF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F918D5A01AD25F97006E8FF3;
+			remoteInfo = KxZipLib;
+		};
+		F918D5E21AD25FCF006E8FF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F918D5781AD25F46006E8FF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F918D5A01AD25F97006E8FF3;
+			remoteInfo = KxZipLib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F918D59F1AD25F97006E8FF3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				F918D5A41AD25F97006E8FF3 /* KxZipLib.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F918D5811AD25F46006E8FF3 /* KxZipKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KxZipKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F918D5851AD25F46006E8FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F918D5861AD25F46006E8FF3 /* KxZipKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KxZipKit.h; sourceTree = "<group>"; };
+		F918D58C1AD25F46006E8FF3 /* KxZipKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KxZipKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F918D5921AD25F46006E8FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F918D5931AD25F46006E8FF3 /* KxZipKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KxZipKitTests.m; sourceTree = "<group>"; };
+		F918D5A11AD25F97006E8FF3 /* libKxZipLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKxZipLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F918D5A31AD25F97006E8FF3 /* KxZipLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KxZipLib.h; sourceTree = "<group>"; };
+		F918D5A51AD25F97006E8FF3 /* KxZipLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KxZipLib.m; sourceTree = "<group>"; };
+		F918D5AB1AD25F97006E8FF3 /* KxZipLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KxZipLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F918D5B11AD25F97006E8FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F918D5BC1AD25FB4006E8FF3 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F918D5BF1AD25FB4006E8FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F918D5C01AD25FB4006E8FF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F918D5C21AD25FB4006E8FF3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F918D5C31AD25FB4006E8FF3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F918D5C51AD25FB4006E8FF3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F918D5C61AD25FB4006E8FF3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F918D5CB1AD25FB4006E8FF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F918D5CE1AD25FB4006E8FF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F918D57D1AD25F46006E8FF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5891AD25F46006E8FF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D58D1AD25F46006E8FF3 /* KxZipKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D59E1AD25F97006E8FF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5A81AD25F97006E8FF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D5AC1AD25F97006E8FF3 /* libKxZipLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5B91AD25FB4006E8FF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D5E41AD25FDE006E8FF3 /* libKxZipLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F918D5771AD25F46006E8FF3 = {
+			isa = PBXGroup;
+			children = (
+				F918D5831AD25F46006E8FF3 /* KxZipKit */,
+				F918D5901AD25F46006E8FF3 /* KxZipKitTests */,
+				F918D5A21AD25F97006E8FF3 /* KxZipLib */,
+				F918D5AF1AD25F97006E8FF3 /* KxZipLibTests */,
+				F918D5BD1AD25FB4006E8FF3 /* Demo */,
+				F918D5821AD25F46006E8FF3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F918D5821AD25F46006E8FF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5811AD25F46006E8FF3 /* KxZipKit.framework */,
+				F918D58C1AD25F46006E8FF3 /* KxZipKitTests.xctest */,
+				F918D5A11AD25F97006E8FF3 /* libKxZipLib.a */,
+				F918D5AB1AD25F97006E8FF3 /* KxZipLibTests.xctest */,
+				F918D5BC1AD25FB4006E8FF3 /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F918D5831AD25F46006E8FF3 /* KxZipKit */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5861AD25F46006E8FF3 /* KxZipKit.h */,
+				F918D5841AD25F46006E8FF3 /* Supporting Files */,
+			);
+			path = KxZipKit;
+			sourceTree = "<group>";
+		};
+		F918D5841AD25F46006E8FF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5851AD25F46006E8FF3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F918D5901AD25F46006E8FF3 /* KxZipKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5931AD25F46006E8FF3 /* KxZipKitTests.m */,
+				F918D5911AD25F46006E8FF3 /* Supporting Files */,
+			);
+			path = KxZipKitTests;
+			sourceTree = "<group>";
+		};
+		F918D5911AD25F46006E8FF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5921AD25F46006E8FF3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F918D5A21AD25F97006E8FF3 /* KxZipLib */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5A31AD25F97006E8FF3 /* KxZipLib.h */,
+				F918D5A51AD25F97006E8FF3 /* KxZipLib.m */,
+			);
+			path = KxZipLib;
+			sourceTree = "<group>";
+		};
+		F918D5AF1AD25F97006E8FF3 /* KxZipLibTests */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5B01AD25F97006E8FF3 /* Supporting Files */,
+			);
+			path = KxZipLibTests;
+			sourceTree = "<group>";
+		};
+		F918D5B01AD25F97006E8FF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5B11AD25F97006E8FF3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F918D5BD1AD25FB4006E8FF3 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5C21AD25FB4006E8FF3 /* AppDelegate.h */,
+				F918D5C31AD25FB4006E8FF3 /* AppDelegate.m */,
+				F918D5C51AD25FB4006E8FF3 /* ViewController.h */,
+				F918D5C61AD25FB4006E8FF3 /* ViewController.m */,
+				F918D5CB1AD25FB4006E8FF3 /* Images.xcassets */,
+				F918D5CD1AD25FB4006E8FF3 /* LaunchScreen.xib */,
+				F918D5BE1AD25FB4006E8FF3 /* Supporting Files */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		F918D5BE1AD25FB4006E8FF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F918D5BF1AD25FB4006E8FF3 /* Info.plist */,
+				F918D5C01AD25FB4006E8FF3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F918D57E1AD25F46006E8FF3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D5871AD25F46006E8FF3 /* KxZipKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F918D5801AD25F46006E8FF3 /* KxZipKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F918D5971AD25F46006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipKit" */;
+			buildPhases = (
+				F918D57C1AD25F46006E8FF3 /* Sources */,
+				F918D57D1AD25F46006E8FF3 /* Frameworks */,
+				F918D57E1AD25F46006E8FF3 /* Headers */,
+				F918D57F1AD25F46006E8FF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KxZipKit;
+			productName = KxZipKit;
+			productReference = F918D5811AD25F46006E8FF3 /* KxZipKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F918D58B1AD25F46006E8FF3 /* KxZipKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F918D59A1AD25F46006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipKitTests" */;
+			buildPhases = (
+				F918D5881AD25F46006E8FF3 /* Sources */,
+				F918D5891AD25F46006E8FF3 /* Frameworks */,
+				F918D58A1AD25F46006E8FF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F918D58F1AD25F46006E8FF3 /* PBXTargetDependency */,
+			);
+			name = KxZipKitTests;
+			productName = KxZipKitTests;
+			productReference = F918D58C1AD25F46006E8FF3 /* KxZipKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F918D5A01AD25F97006E8FF3 /* KxZipLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F918D5B61AD25F97006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipLib" */;
+			buildPhases = (
+				F918D59D1AD25F97006E8FF3 /* Sources */,
+				F918D59E1AD25F97006E8FF3 /* Frameworks */,
+				F918D59F1AD25F97006E8FF3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KxZipLib;
+			productName = KxZipLib;
+			productReference = F918D5A11AD25F97006E8FF3 /* libKxZipLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F918D5AA1AD25F97006E8FF3 /* KxZipLibTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F918D5B71AD25F97006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipLibTests" */;
+			buildPhases = (
+				F918D5A71AD25F97006E8FF3 /* Sources */,
+				F918D5A81AD25F97006E8FF3 /* Frameworks */,
+				F918D5A91AD25F97006E8FF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F918D5AE1AD25F97006E8FF3 /* PBXTargetDependency */,
+			);
+			name = KxZipLibTests;
+			productName = KxZipLibTests;
+			productReference = F918D5AB1AD25F97006E8FF3 /* KxZipLibTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F918D5BB1AD25FB4006E8FF3 /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F918D5DC1AD25FB5006E8FF3 /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				F918D5B81AD25FB4006E8FF3 /* Sources */,
+				F918D5B91AD25FB4006E8FF3 /* Frameworks */,
+				F918D5BA1AD25FB4006E8FF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F918D5E31AD25FCF006E8FF3 /* PBXTargetDependency */,
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = F918D5BC1AD25FB4006E8FF3 /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F918D5781AD25F46006E8FF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Kolyvan;
+				TargetAttributes = {
+					F918D5801AD25F46006E8FF3 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					F918D58B1AD25F46006E8FF3 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					F918D5A01AD25F97006E8FF3 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					F918D5AA1AD25F97006E8FF3 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					F918D5BB1AD25FB4006E8FF3 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = F918D57B1AD25F46006E8FF3 /* Build configuration list for PBXProject "KxZipKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F918D5771AD25F46006E8FF3;
+			productRefGroup = F918D5821AD25F46006E8FF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F918D5801AD25F46006E8FF3 /* KxZipKit */,
+				F918D58B1AD25F46006E8FF3 /* KxZipKitTests */,
+				F918D5A01AD25F97006E8FF3 /* KxZipLib */,
+				F918D5AA1AD25F97006E8FF3 /* KxZipLibTests */,
+				F918D5BB1AD25FB4006E8FF3 /* Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F918D57F1AD25F46006E8FF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D58A1AD25F46006E8FF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5A91AD25F97006E8FF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5BA1AD25FB4006E8FF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D5CF1AD25FB4006E8FF3 /* LaunchScreen.xib in Resources */,
+				F918D5CC1AD25FB4006E8FF3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F918D57C1AD25F46006E8FF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5881AD25F46006E8FF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D5941AD25F46006E8FF3 /* KxZipKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D59D1AD25F97006E8FF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D5A61AD25F97006E8FF3 /* KxZipLib.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5A71AD25F97006E8FF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F918D5B81AD25FB4006E8FF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F918D5C71AD25FB4006E8FF3 /* ViewController.m in Sources */,
+				F918D5C41AD25FB4006E8FF3 /* AppDelegate.m in Sources */,
+				F918D5C11AD25FB4006E8FF3 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F918D58F1AD25F46006E8FF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F918D5801AD25F46006E8FF3 /* KxZipKit */;
+			targetProxy = F918D58E1AD25F46006E8FF3 /* PBXContainerItemProxy */;
+		};
+		F918D5AE1AD25F97006E8FF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F918D5A01AD25F97006E8FF3 /* KxZipLib */;
+			targetProxy = F918D5AD1AD25F97006E8FF3 /* PBXContainerItemProxy */;
+		};
+		F918D5E31AD25FCF006E8FF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F918D5A01AD25F97006E8FF3 /* KxZipLib */;
+			targetProxy = F918D5E21AD25FCF006E8FF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F918D5CD1AD25FB4006E8FF3 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F918D5CE1AD25FB4006E8FF3 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F918D5951AD25F46006E8FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F918D5961AD25F46006E8FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F918D5981AD25F46006E8FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KxZipKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F918D5991AD25F46006E8FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KxZipKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		F918D59B1AD25F46006E8FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KxZipKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F918D59C1AD25F46006E8FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KxZipKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F918D5B21AD25F97006E8FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F918D5B31AD25F97006E8FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		F918D5B41AD25F97006E8FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KxZipLibTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F918D5B51AD25F97006E8FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KxZipLibTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F918D5DD1AD25FB5006E8FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/KxZipLib\"";
+			};
+			name = Debug;
+		};
+		F918D5DE1AD25FB5006E8FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/KxZipLib\"";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F918D57B1AD25F46006E8FF3 /* Build configuration list for PBXProject "KxZipKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F918D5951AD25F46006E8FF3 /* Debug */,
+				F918D5961AD25F46006E8FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F918D5971AD25F46006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F918D5981AD25F46006E8FF3 /* Debug */,
+				F918D5991AD25F46006E8FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F918D59A1AD25F46006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F918D59B1AD25F46006E8FF3 /* Debug */,
+				F918D59C1AD25F46006E8FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F918D5B61AD25F97006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F918D5B21AD25F97006E8FF3 /* Debug */,
+				F918D5B31AD25F97006E8FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F918D5B71AD25F97006E8FF3 /* Build configuration list for PBXNativeTarget "KxZipLibTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F918D5B41AD25F97006E8FF3 /* Debug */,
+				F918D5B51AD25F97006E8FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F918D5DC1AD25FB5006E8FF3 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F918D5DD1AD25FB5006E8FF3 /* Debug */,
+				F918D5DE1AD25FB5006E8FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F918D5781AD25F46006E8FF3 /* Project object */;
+}
