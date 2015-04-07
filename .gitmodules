@@ -1,0 +1,3 @@
+[submodule "vendors/minizip"]
+	path = vendors/minizip
+	url = https://github.com/nmoinvaz/minizip.git

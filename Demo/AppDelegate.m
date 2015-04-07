@@ -10,7 +10,6 @@
 #import "ViewController.h"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
@@ -18,10 +17,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [ViewController new];
-    [self.window makeKeyAndVisible];
+    
+    NSString *docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                              NSUserDomainMask,
+                                                              YES) lastObject];
+    
+    NSLog(@"Run in %@", docsPath);
+    
+    NSString *path = [docsPath stringByAppendingPathComponent:@"zips"];
 
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    ViewController *vc = [ViewController new];
+    vc.path = path;
+    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = naVC;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

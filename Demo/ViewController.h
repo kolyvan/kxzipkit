@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
-
+@property (readwrite, nonatomic, strong) NSString *path;
 @end
 
