@@ -583,7 +583,7 @@ clean:
         path = [path stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
     }
     
-    if ([path rangeOfString:@".."].location != NSNotFound) {
+    if ([path hasPrefix:@"/"] || [path hasPrefix:@".."]) {
         return nil; // wrong path
     }
     
