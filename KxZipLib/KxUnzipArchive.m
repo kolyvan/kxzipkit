@@ -605,6 +605,36 @@ clean:
     return CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingKOI8_R);
 }
 
++ (BOOL) probeFileAtPath:(NSString *)path
+{
+    // 50 4B 03 04  PK\003\004
+    // 50 4B 05 06  PK\005\006 (empty archive)
+    // 50 4B 07 08  PK\007\008
+    
+    const Byte ZipMagic1[] = { 0x50, 0x4B, 0x03, 0x04 };
+    const Byte ZipMagic2[] = { 0x50, 0x4B, 0x05, 0x06 };
+    const Byte ZipMagic3[] = { 0x50, 0x4B, 0x07, 0x08 };
+    
+    NSFileHandle *fh = [NSFileHandle fileHandleForReadingAtPath:path];
+    if (!fh) {
+        return NO;
+    }
+    
+    NSData *data = [fh readDataOfLength:4];
+    [fh closeFile];
+    
+    if (!data || data.length < 4) {
+        return NO;
+    }
+    
+    const Byte *bytes = data.bytes;
+    
+    return
+    (bytes[0] == ZipMagic1[0] && bytes[1] == ZipMagic1[1] && bytes[2] == ZipMagic1[2] && bytes[3] == ZipMagic1[3]) ||
+    (bytes[0] == ZipMagic2[0] && bytes[1] == ZipMagic2[1] && bytes[2] == ZipMagic2[2] && bytes[3] == ZipMagic2[3]) ||
+    (bytes[0] == ZipMagic3[0] && bytes[1] == ZipMagic3[1] && bytes[2] == ZipMagic3[2] && bytes[3] == ZipMagic3[3]);
+}
+
 @end
 
 //////////

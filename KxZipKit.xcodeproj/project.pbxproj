@@ -65,6 +65,8 @@
 		F92E2A051AD3A52E00FBE761 /* KxZipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F918D5811AD25F46006E8FF3 /* KxZipKit.framework */; };
 		F92E2A0A1AD3A61100FBE761 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F926B5D91AD2719B00A6F769 /* libz.dylib */; };
 		F92E2A0C1AD3A65D00FBE761 /* KxZipKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F918D5811AD25F46006E8FF3 /* KxZipKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F967EAC61B68E9E2007AFBAA /* UnzipProbeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F967EAC51B68E9E2007AFBAA /* UnzipProbeTest.m */; };
+		F967EAC71B68EB97007AFBAA /* UnzipProbeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F967EAC51B68E9E2007AFBAA /* UnzipProbeTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,7 @@
 		F926B6081AD2AD7000A6F769 /* Unzip3DataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unzip3DataTests.m; sourceTree = "<group>"; };
 		F926B60B1AD2B73700A6F769 /* Unzip4ExtractTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unzip4ExtractTests.m; sourceTree = "<group>"; };
 		F926B61D1AD2BA2B00A6F769 /* source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = source; sourceTree = "<group>"; };
+		F967EAC51B68E9E2007AFBAA /* UnzipProbeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnzipProbeTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +288,7 @@
 				F926B60B1AD2B73700A6F769 /* Unzip4ExtractTests.m */,
 				F926B6031AD2AD3F00A6F769 /* AssetsHelper.h */,
 				F926B6041AD2AD3F00A6F769 /* AssetsHelper.m */,
+				F967EAC51B68E9E2007AFBAA /* UnzipProbeTest.m */,
 			);
 			path = KxZipLibTests;
 			sourceTree = "<group>";
@@ -591,6 +595,7 @@
 				F92E29FF1AD3A43B00FBE761 /* Unzip4ExtractTests.m in Sources */,
 				F92E29FC1AD3A43200FBE761 /* Unzip1OpenTests.m in Sources */,
 				F92E2A001AD3A44800FBE761 /* AssetsHelper.m in Sources */,
+				F967EAC71B68EB97007AFBAA /* UnzipProbeTest.m in Sources */,
 				F92E29FD1AD3A43500FBE761 /* Unzip2FilesTests.m in Sources */,
 				F92E29FE1AD3A43800FBE761 /* Unzip3DataTests.m in Sources */,
 			);
@@ -617,6 +622,7 @@
 				F926B60D1AD2B73700A6F769 /* Unzip4ExtractTests.m in Sources */,
 				F926B6071AD2AD3F00A6F769 /* AssetsHelper.m in Sources */,
 				F926B5FB1AD29C8700A6F769 /* Unzip1OpenTests.m in Sources */,
+				F967EAC61B68E9E2007AFBAA /* UnzipProbeTest.m in Sources */,
 				F926B60A1AD2AD7000A6F769 /* Unzip3DataTests.m in Sources */,
 				F926B5FF1AD2A16100A6F769 /* Unzip2FilesTests.m in Sources */,
 			);

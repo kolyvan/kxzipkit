@@ -59,6 +59,8 @@
 
 - (KxUnzipFile *) fileWithPath:(NSString *)path;
 
++ (BOOL) probeFileAtPath:(NSString *)path;
+
 @end
 
 
