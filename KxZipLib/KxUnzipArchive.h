@@ -54,6 +54,10 @@
 - (BOOL) readDataForFile:(KxUnzipFile *)file
                    block:(BOOL(^)(NSData *chunk))block;
 
+- (BOOL) readDataForFile:(KxUnzipFile *)file
+               chunkSize:(NSUInteger)chunkSize
+                   block:(BOOL(^)(NSData *chunk))block;
+
 - (NSUInteger) extractToPath:(NSString *)folder;
 - (NSUInteger) extractToPath:(NSString *)folder overwrite:(BOOL)overwrite;
 

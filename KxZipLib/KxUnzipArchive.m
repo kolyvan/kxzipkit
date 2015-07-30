@@ -265,20 +265,27 @@ enum
 }
 
 - (BOOL) readDataForFile:(KxUnzipFile *)file
+                   block:(BOOL(^)(NSData *chunk))block
+{
+    return [self readDataForFile:file chunkSize:0 block:block];
+}
+
+- (BOOL) readDataForFile:(KxUnzipFile *)file
+               chunkSize:(NSUInteger)chunkSize
                    block:(BOOL(^)(NSData *chunk))block;
 {
     if (![self locateFileInZip:file]) {
         return NO;
     }
     
-    return [self currentFileReadDataWithBlock:block];
+    return [self currentFileReadDataWithChunkSize:chunkSize block:block];
 }
 
 - (NSData *) currentFileReadData
 {
     NSMutableData *data = [NSMutableData data];
     
-    const BOOL res = [self currentFileReadDataWithBlock:^BOOL(NSData *chunk)
+    const BOOL res = [self currentFileReadDataWithChunkSize:0 block:^BOOL(NSData *chunk)
                       {
                           if (chunk) {
                               [data appendData:chunk];
@@ -289,7 +296,8 @@ enum
     return res ? data : nil;
 }
 
-- (BOOL) currentFileReadDataWithBlock:(BOOL(^)(NSData *chunk))block;
+- (BOOL) currentFileReadDataWithChunkSize:(NSUInteger)chunkSize
+                                    block:(BOOL(^)(NSData *chunk))block;
 {
     int res;
     
@@ -301,32 +309,41 @@ enum
     
     if (UNZ_OK == res) {
         
-        Byte buffer[4096];
-        int read;
+        if (!chunkSize) {
+            chunkSize = 32*1024;
+        }
         
-        do {
+        Byte *chunk = malloc(chunkSize);
+        if (chunk) {
+        
+            int read;
             
-            read = unzReadCurrentFile(_unzFile, buffer, sizeof(buffer));
-            
-            if (read < 0) {
+            do {
                 
-                res = -1;
+                read = unzReadCurrentFile(_unzFile, chunk, (unsigned)chunkSize);
                 
-            } else if (read == 0) {
-                
-                block(nil);
-                
-            } else if (read > 0) {
-                
-                NSData *data = [NSData dataWithBytesNoCopy:buffer
-                                                    length:read
-                                              freeWhenDone:NO];
-                if (!block(data)) {
-                    break;
+                if (read < 0) {
+                    
+                    res = -1;
+                    
+                } else if (read == 0) {
+                    
+                    block(nil);
+                    
+                } else if (read > 0) {
+                    
+                    NSData *data = [NSData dataWithBytesNoCopy:chunk
+                                                        length:read
+                                                  freeWhenDone:NO];
+                    if (!block(data)) {
+                        break;
+                    }
                 }
-            }
+                
+            } while (read > 0);
             
-        } while (read > 0);
+            free(chunk);
+        }
         
         unzCloseCurrentFile(_unzFile);
     }
@@ -455,35 +472,41 @@ enum
             goto  clean;
         }
         
-        Byte buffer[1024*16] = {0};
-        int read;
-        
-        do {
+        const NSUInteger bufSuze = 32*1024;
+        Byte *buffer = malloc(bufSuze);
+        if (buffer) {
             
-            read = unzReadCurrentFile(_unzFile, buffer, sizeof(buffer));
-            if (read < 0) {
+            int read;
+            
+            do {
                 
-                res = -1;
-                
-            } else if (read > 0) {
-                
-                NSData *data = [NSData dataWithBytesNoCopy:buffer
-                                                    length:read
-                                              freeWhenDone:NO];
-                
-                @try {
+                read = unzReadCurrentFile(_unzFile, buffer, bufSuze);
+                if (read < 0) {
                     
-                    [file writeData:data];
-                    
-                } @catch (NSException *exp) {
-                 
-                    NSLog(@"catch: %@", exp);
                     res = -1;
-                    read = 0;
+                    
+                } else if (read > 0) {
+                    
+                    NSData *data = [NSData dataWithBytesNoCopy:buffer
+                                                        length:read
+                                                  freeWhenDone:NO];
+                    
+                    @try {
+                        
+                        [file writeData:data];
+                        
+                    } @catch (NSException *exp) {
+                        
+                        NSLog(@"exception: %s %@", __PRETTY_FUNCTION__, exp);
+                        res = -1;
+                        read = 0;
+                    }
                 }
-            }
+                
+            } while (read > 0);
             
-        } while (read > 0);
+            free(buffer);
+        }
         
         [file closeFile];
     }
