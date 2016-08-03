@@ -33,6 +33,21 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const KxZipKitDomain;
+
+typedef NS_ENUM(NSInteger, KxZipKitError) {
+
+    KxZipKitErrorUnzipAny = 1,
+    KxZipKitErrorUnzipEOF,
+    KxZipKitErrorUnzipParam,
+    KxZipKitErrorUnzipBadFile,
+    KxZipKitErrorUnzipInternal,
+    KxZipKitErrorUnzipCrc,
+    KxZipKitErrorUnzipBadName,
+    KxZipKitErrorUnzipFileExists,
+    KxZipKitErrorUnzipFileIO,
+};
+
 @class KxUnzipFile;
 
 @interface KxUnzipArchive : NSObject
@@ -48,18 +63,31 @@
                      password:(NSString *)password;
 
 - (NSData *) readDataForFilePath:(NSString *)path;
+- (NSData *) readDataForFilePath:(NSString *)path error:(NSError **)error;
 
 - (NSData *) readDataForFile:(KxUnzipFile *)file;
+- (NSData *) readDataForFile:(KxUnzipFile *)file error:(NSError **)error;
 
 - (BOOL) readDataForFile:(KxUnzipFile *)file
+                   block:(BOOL(^)(NSData *chunk))block;
+
+- (BOOL) readDataForFile:(KxUnzipFile *)file
+                   error:(NSError **)error
                    block:(BOOL(^)(NSData *chunk))block;
 
 - (BOOL) readDataForFile:(KxUnzipFile *)file
                chunkSize:(NSUInteger)chunkSize
                    block:(BOOL(^)(NSData *chunk))block;
 
+- (BOOL) readDataForFile:(KxUnzipFile *)file
+               chunkSize:(NSUInteger)chunkSize
+                   error:(NSError **)error
+                   block:(BOOL(^)(NSData *chunk))block;
+
 - (NSUInteger) extractToPath:(NSString *)folder;
+- (NSUInteger) extractToPath:(NSString *)folder error:(NSError **)error;
 - (NSUInteger) extractToPath:(NSString *)folder overwrite:(BOOL)overwrite;
+- (NSUInteger) extractToPath:(NSString *)folder overwrite:(BOOL)overwrite error:(NSError **)error;
 
 - (KxUnzipFile *) fileWithPath:(NSString *)path;
 

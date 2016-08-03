@@ -34,6 +34,8 @@
 #import "KxUnzipArchive.h"
 #include "unzip.h"
 
+NSString *const KxZipKitDomain = @"com.kolyvan.zipkit";
+
 enum
 {
     ZipBitFlagNone = 0,
@@ -83,9 +85,8 @@ enum
     if (!unzFile) {
         return nil;
     }
-    
-    self = [super init];
-    if (self) {
+
+    if ((self = [super init])) {
         
         _unzFile = unzFile;
         _password = password;
@@ -118,7 +119,7 @@ enum
         
         unz_global_info64 gi = {0};
         if (UNZ_OK == unzGetGlobalInfo64(_unzFile, &gi)) {
-            _numFiles = gi.number_entry;
+            _numFiles = (NSUInteger)gi.number_entry;
         } else {
             _numFiles = 0;
         }
@@ -210,8 +211,8 @@ enum
     file.path = [self filePathWithBytes:filename
                                  length:fileInfo.size_filename];
     
-    file.compressedSize = fileInfo.compressed_size;
-    file.uncompressedSize = fileInfo.uncompressed_size;
+    file.compressedSize = (NSUInteger)fileInfo.compressed_size;
+    file.uncompressedSize = (NSUInteger)fileInfo.uncompressed_size;
     file.crc32 = fileInfo.crc;
     file.fileMode = fileInfo.external_fa;
     file.isCrypted = 0 != (fileInfo.flag & ZipBitFlagEncrypted);
@@ -248,44 +249,77 @@ enum
 
 - (NSData *) readDataForFilePath:(NSString *)path
 {
+    return [self readDataForFilePath:path error:nil];
+}
+
+- (NSData *) readDataForFilePath:(NSString *)path
+                           error:(NSError **)error
+{
     if (![self locateFileInZipWithPath:path]) {
         return nil;
     }
     
-    return [self currentFileReadData];
+    return [self currentFileReadData:error];
 }
 
 - (NSData *) readDataForFile:(KxUnzipFile *)file
+{
+    return [self readDataForFile:file error:nil];
+}
+
+- (NSData *) readDataForFile:(KxUnzipFile *)file
+                       error:(NSError **)error
 {
     if (![self locateFileInZip:file]) {
         return nil;
     }
     
-    return [self currentFileReadData];    
+    return [self currentFileReadData:error];
 }
 
 - (BOOL) readDataForFile:(KxUnzipFile *)file
                    block:(BOOL(^)(NSData *chunk))block
 {
-    return [self readDataForFile:file chunkSize:0 block:block];
+    return [self readDataForFile:file chunkSize:0 error:nil block:block];
+}
+
+- (BOOL) readDataForFile:(KxUnzipFile *)file
+                   error:(NSError **)error
+                   block:(BOOL(^)(NSData *chunk))block
+{
+    return [self readDataForFile:file chunkSize:0 error:error block:block];
+}
+
+
+- (BOOL) readDataForFile:(KxUnzipFile *)file
+               chunkSize:(NSUInteger)chunkSize
+                   block:(BOOL(^)(NSData *chunk))block
+{
+    return [self readDataForFile:file
+                       chunkSize:chunkSize
+                           error:nil
+                           block:block];
 }
 
 - (BOOL) readDataForFile:(KxUnzipFile *)file
                chunkSize:(NSUInteger)chunkSize
-                   block:(BOOL(^)(NSData *chunk))block;
+                   error:(NSError **)error
+                   block:(BOOL(^)(NSData *chunk))block
 {
     if (![self locateFileInZip:file]) {
         return NO;
     }
     
-    return [self currentFileReadDataWithChunkSize:chunkSize block:block];
+    return [self currentFileReadDataWithChunkSize:chunkSize error:error block:block];
 }
 
-- (NSData *) currentFileReadData
+- (NSData *) currentFileReadData:(NSError **)error
 {
     NSMutableData *data = [NSMutableData data];
     
-    const BOOL res = [self currentFileReadDataWithChunkSize:0 block:^BOOL(NSData *chunk)
+    const BOOL res = [self currentFileReadDataWithChunkSize:0
+                                                      error:error
+                                                      block:^BOOL(NSData *chunk)
                       {
                           if (chunk) {
                               [data appendData:chunk];
@@ -297,7 +331,8 @@ enum
 }
 
 - (BOOL) currentFileReadDataWithChunkSize:(NSUInteger)chunkSize
-                                    block:(BOOL(^)(NSData *chunk))block;
+                                    error:(NSError **)error
+                                    block:(BOOL(^)(NSData *chunk))block
 {
     int res;
     
@@ -306,70 +341,89 @@ enum
     } else {
         res = unzOpenCurrentFile(_unzFile);
     }
-    
-    if (UNZ_OK == res) {
-        
-        if (!chunkSize) {
-            chunkSize = 32*1024;
+
+    if (UNZ_OK != res) {
+        if (error) {
+            *error = [self.class errorWithUnzResult:res];
         }
-        
-        Byte *chunk = malloc(chunkSize);
-        if (chunk) {
-        
-            int read;
-            
-            do {
-                
-                read = unzReadCurrentFile(_unzFile, chunk, (unsigned)chunkSize);
-                
-                if (read < 0) {
-                    
-                    res = -1;
-                    
-                } else if (read == 0) {
-                    
-                    block(nil);
-                    
-                } else if (read > 0) {
-                    
-                    NSData *data = [NSData dataWithBytesNoCopy:chunk
-                                                        length:read
-                                                  freeWhenDone:NO];
-                    if (!block(data)) {
-                        break;
-                    }
-                }
-                
-            } while (read > 0);
-            
-            free(chunk);
-        }
-        
-        unzCloseCurrentFile(_unzFile);
+        return NO;
     }
-    
+
+    if (!chunkSize) {
+        chunkSize = 32*1024;
+    }
+
+    Byte *chunk = malloc(chunkSize);
+    if (chunk) {
+
+        int read;
+
+        do {
+
+            read = unzReadCurrentFile(_unzFile, chunk, (unsigned)chunkSize);
+
+            if (read < 0) {
+
+                if (error) {
+                    *error = [self.class errorWithUnzResult:read];
+                }
+                res = -1;
+
+            } else if (read == 0) {
+
+                block(nil);
+
+            } else if (read > 0) {
+
+                NSData *data = [NSData dataWithBytesNoCopy:chunk
+                                                    length:read
+                                              freeWhenDone:NO];
+                if (!block(data)) {
+                    break;
+                }
+            }
+
+        } while (read > 0);
+
+        free(chunk);
+    }
+
+    unzCloseCurrentFile(_unzFile);
     return UNZ_OK == res;
 }
 
 - (NSUInteger) extractToPath:(NSString *)folder
 {
-    return [self extractToPath:folder overwrite:NO];
+    return [self extractToPath:folder overwrite:NO error:nil];
+}
+
+- (NSUInteger) extractToPath:(NSString *)folder
+                       error:(NSError **)error
+{
+    return [self extractToPath:folder overwrite:NO error:error];
 }
 
 - (NSUInteger) extractToPath:(NSString *)folder
                    overwrite:(BOOL)overwrite
 {
+    return [self extractToPath:folder overwrite:overwrite error:nil];
+}
+
+- (NSUInteger) extractToPath:(NSString *)folder
+                   overwrite:(BOOL)overwrite
+                       error:(NSError **)error
+{
     NSFileManager *fm = [NSFileManager new];
-    
     NSUInteger count = 0;
     
     int res = unzGoToFirstFile(_unzFile);
-    
+
     while (UNZ_OK == res) {
         
         if ([self extractCurrentFileToPath:folder
                                  overwrite:overwrite
-                               fileManager:fm])
+                               fileManager:fm
+                                     error:error])
         {
             count += 1;
         }
@@ -383,6 +437,7 @@ enum
 - (BOOL) extractCurrentFileToPath:(NSString *)destFolder
                         overwrite:(BOOL)overwrite
                       fileManager:(NSFileManager *)fileManager
+                            error:(NSError **)error
 {
     int res;
     
@@ -391,18 +446,24 @@ enum
     } else {
         res = unzOpenCurrentFile(_unzFile);
     }
-    
+
     if (UNZ_OK != res) {
+        if (error) {
+            *error = [self.class errorWithUnzResult:res];
+        }
         return NO;
     }
     
     NSString *path;
     char *filename = NULL;
-    
+
     unz_file_info64 fileInfo ={0};
     unzGetCurrentFileInfo64(_unzFile, &fileInfo, NULL, 0, NULL, 0, NULL, 0);
     
     if (!fileInfo.size_filename) {
+        if (error) {
+            *error = [self.class errorWithZipKitCode:KxZipKitErrorUnzipBadName reason:nil];
+        }
         res = -1; // wrong filename
         goto clean;
     }
@@ -415,12 +476,18 @@ enum
     
     res = unzGetCurrentFileInfo64(_unzFile, &fileInfo, filename, fileInfo.size_filename, NULL, 0, NULL, 0);
     if (res != UNZ_OK) {
+        if (error) {
+            *error = [self.class errorWithUnzResult:res];
+        }
         res = -1; // minizip failure
         goto clean;
     }
     
     path = [self filePathWithBytes:filename length:fileInfo.size_filename];
     if (!path) {
+        if (error) {
+            *error = [self.class errorWithZipKitCode:KxZipKitErrorUnzipBadName reason:nil];
+        }
         res = -1; // wrong path
         goto clean;
     }
@@ -436,16 +503,19 @@ enum
         if ([fileManager fileExistsAtPath:dirPath isDirectory:&dirIsDir]) {
             
             if (!dirIsDir) {
+                if (error) {
+                    *error = [self.class errorWithZipKitCode:KxZipKitErrorUnzipFileExists reason:nil];
+                }
                 res = -1; // file exist and it's not directory
                 goto  clean;
             }
             
         } else {
-            
+
             if (![fileManager createDirectoryAtPath:dirPath
                         withIntermediateDirectories:YES
                                          attributes:nil
-                                              error:nil])
+                                              error:error])
             {
                 res = -1; // unable create a directory
                 goto  clean;
@@ -456,18 +526,27 @@ enum
             if (overwrite) {
                 [fileManager removeItemAtPath:path error:nil];
             } else {
+                if (error) {
+                    *error = [self.class errorWithZipKitCode:KxZipKitErrorUnzipFileExists reason:nil];
+                }
                 res = -1; // a file exists, forbid overwrite
                 goto  clean;
             }
         }
         
         if (![fileManager createFileAtPath:path contents:nil attributes:nil]) {
+            if (error) {
+                *error = [self.class errorWithZipKitCode:KxZipKitErrorUnzipFileIO reason:nil];
+            }
             res = -1; // unable create file path
             goto  clean;
         }
         
         NSFileHandle *file = [NSFileHandle fileHandleForWritingAtPath:path];
         if (!file) {
+            if (error) {
+                *error = [self.class errorWithZipKitCode:KxZipKitErrorUnzipFileIO reason:nil];
+            }
             res = -1; // unable open file for writing
             goto  clean;
         }
@@ -482,7 +561,10 @@ enum
                 
                 read = unzReadCurrentFile(_unzFile, buffer, bufSuze);
                 if (read < 0) {
-                    
+
+                    if (error) {
+                        *error = [self.class errorWithUnzResult:read];
+                    }
                     res = -1;
                     
                 } else if (read > 0) {
@@ -500,6 +582,10 @@ enum
                         NSLog(@"exception: %s %@", __PRETTY_FUNCTION__, exp);
                         res = -1;
                         read = 0;
+
+                        if (error) {
+                            *error = [self.class errorWithZipKitCode:KxZipKitErrorUnzipFileIO reason:exp.reason];
+                        }
                     }
                 }
                 
@@ -656,6 +742,61 @@ clean:
     (bytes[0] == ZipMagic1[0] && bytes[1] == ZipMagic1[1] && bytes[2] == ZipMagic1[2] && bytes[3] == ZipMagic1[3]) ||
     (bytes[0] == ZipMagic2[0] && bytes[1] == ZipMagic2[1] && bytes[2] == ZipMagic2[2] && bytes[3] == ZipMagic2[3]) ||
     (bytes[0] == ZipMagic3[0] && bytes[1] == ZipMagic3[1] && bytes[2] == ZipMagic3[2] && bytes[3] == ZipMagic3[3]);
+}
+
++ (NSError *) errorWithUnzResult:(int)zipCode
+{
+    if (zipCode == UNZ_ERRNO) {
+
+        const int code = errno;
+        if (code) {
+            const char *str = strerror((int)code);
+            NSString *message;
+            if (str) {
+                message = [NSString stringWithUTF8String:str];
+            }
+            if (!message) {
+                message = NSLocalizedString(@"INTERNAL_ERROR", nil);
+            }
+            return [NSError errorWithDomain:NSPOSIXErrorDomain
+                                       code:code
+                                   userInfo:@{ NSLocalizedDescriptionKey : message }];
+        }
+    }
+
+    KxZipKitError code;
+    switch (zipCode) {
+        case UNZ_EOF:                   code = KxZipKitErrorUnzipEOF; break;
+        case UNZ_PARAMERROR:            code = KxZipKitErrorUnzipParam; break;
+        case UNZ_BADZIPFILE:            code = KxZipKitErrorUnzipBadFile; break;
+        case UNZ_INTERNALERROR:         code = KxZipKitErrorUnzipInternal; break;
+        case UNZ_CRCERROR:              code = KxZipKitErrorUnzipCrc; break;
+        default:                        code = KxZipKitErrorUnzipAny; break;
+    }
+    return [self errorWithZipKitCode:code reason:nil];
+}
+
++ (NSError *) errorWithZipKitCode:(KxZipKitError)code reason:(NSString *)reason
+{
+    NSString *message;
+    switch (code) {
+        case KxZipKitErrorUnzipEOF:         message = @"EOF"; break;
+        case KxZipKitErrorUnzipParam:       message = @"UNZ_PARAMERROR"; break;
+        case KxZipKitErrorUnzipBadFile:     message = NSLocalizedString(@"BAD_ZIPFILE", nil); break;
+        case KxZipKitErrorUnzipInternal:    message = NSLocalizedString(@"INTERNAL_ERROR", nil); break;
+        case KxZipKitErrorUnzipCrc:         message = NSLocalizedString(@"BAD_CRC", nil); break;
+        case KxZipKitErrorUnzipBadName:     message = NSLocalizedString(@"BAD_NAME", nil); break;
+        case KxZipKitErrorUnzipFileExists:  message = NSLocalizedString(@"ALREADY_EXISTS", nil); break;
+        case KxZipKitErrorUnzipFileIO:      message = NSLocalizedString(@"FILE_IO_ERROR", nil); break;
+        default:                            message = NSLocalizedString(@"ERROR", nil); break;
+    }
+
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    userInfo[NSLocalizedDescriptionKey] = message;
+    if (reason.length) {
+        userInfo[NSLocalizedFailureReasonErrorKey] = reason;
+    }
+    return [NSError errorWithDomain:KxZipKitDomain code:code userInfo:[userInfo copy]];
 }
 
 @end
